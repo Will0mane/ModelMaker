@@ -2,6 +2,7 @@ package me.will0mane.plugins.modelmaker.model;
 
 import lombok.Getter;
 import me.will0mane.plugins.modelmaker.ModelItem;
+import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
@@ -66,12 +67,12 @@ public class ModelPieceSettings {
         hasGravity = configuration.contains("gravity") && configuration.getBoolean("gravity");
         ConfigurationSection equipment = configuration.getConfigurationSection("equipment");
         if(equipment == null) return;
-        head = ModelItem.getOrDefaultFromConfig(equipment.getConfigurationSection("head"), null);
-        chest = ModelItem.getOrDefaultFromConfig(equipment.getConfigurationSection("chest"), null);
-        leggings = ModelItem.getOrDefaultFromConfig(equipment.getConfigurationSection("legs"), null);
-        boots = ModelItem.getOrDefaultFromConfig(equipment.getConfigurationSection("boots"), null);
-        mainHand = ModelItem.getOrDefaultFromConfig(equipment.getConfigurationSection("mainHand"), null);
-        offHand = ModelItem.getOrDefaultFromConfig(equipment.getConfigurationSection("offHand"), null);
+        head = ModelItem.getOrDefaultFromConfig(equipment.getConfigurationSection("head"), new ItemStack(Material.AIR));
+        chest = ModelItem.getOrDefaultFromConfig(equipment.getConfigurationSection("chest"),  new ItemStack(Material.AIR));
+        leggings = ModelItem.getOrDefaultFromConfig(equipment.getConfigurationSection("legs"),  new ItemStack(Material.AIR));
+        boots = ModelItem.getOrDefaultFromConfig(equipment.getConfigurationSection("boots"),  new ItemStack(Material.AIR));
+        mainHand = ModelItem.getOrDefaultFromConfig(equipment.getConfigurationSection("mainHand"),  new ItemStack(Material.AIR));
+        offHand = ModelItem.getOrDefaultFromConfig(equipment.getConfigurationSection("offHand"),  new ItemStack(Material.AIR));
 
         height = configuration.contains("height") ? configuration.getDouble("height") : 0;
         inFront = configuration.contains("inFront") ? configuration.getDouble("inFront") : 0;

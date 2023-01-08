@@ -28,8 +28,8 @@ public class FileLoadedModel implements Model {
         String piecesPath = "Pieces";
         if(configuration.contains(piecesPath)){
             Objects.requireNonNull(configuration.getConfigurationSection(piecesPath)).getKeys(false).forEach(piece -> {
-                String pieceName = configuration.getString(piecesPath + "." + piece + ".pieceName");
-                ModelPieceSettings settings = new ModelPieceSettings(Objects.requireNonNull(configuration.getConfigurationSection(piecesPath + "." + piece + ".settings")));
+                String pieceName = configuration.getString(piecesPath + "." + piece + ".PieceName");
+                ModelPieceSettings settings = new ModelPieceSettings(Objects.requireNonNull(configuration.getConfigurationSection(piecesPath + "." + piece + ".Settings")));
                 settingsMap.put(new ModelPiece(settings), settings);
             });
         }
@@ -62,7 +62,9 @@ public class FileLoadedModel implements Model {
     @Override
     public void teleportTo(Location location) {
         curCenterLoc = location;
-        calculateAllPiecesLocations().forEach(ModelPiece::teleport);
+        calculateAllPiecesLocations().forEach((modelPiece, loc) -> {
+            modelPiece.renderAt(location);
+        });
     }
 
     @Override
@@ -74,5 +76,10 @@ public class FileLoadedModel implements Model {
             returns.put(modelPiece, inFront.add(settings.offsetX, settings.offsetY, settings.offsetZ));
         });
         return returns;
+    }
+
+    @Override
+    public void removeFromWorld() {
+        settingsMap.forEach((modelPiece, settings) -> modelPiece.stopRendering());
     }
 }

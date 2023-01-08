@@ -11,5 +11,6 @@ public interface Model {
     public void applySettings(ModelPiece modelPiece, ModelPieceSettings settings);
     public void teleportTo(Location location);
     public Map<ModelPiece, Location> calculateAllPiecesLocations();
+    public void removeFromWorld();
 
 }

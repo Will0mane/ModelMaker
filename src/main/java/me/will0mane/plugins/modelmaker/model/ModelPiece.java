@@ -47,7 +47,8 @@ public class ModelPiece {
     }
 
     public void teleport(Location location) {
-        renderAt(location);
+        if(stand == null) return;
+        stand.teleport(location);
     }
 
     public void applySettings(ModelPieceSettings settings) {
@@ -56,6 +57,8 @@ public class ModelPiece {
 
         this.settings = settings;
 
+        stand.setSmall(settings.isSmall);
+        stand.setArms(settings.showArms);
         stand.setVisible(settings.isVisible);
         stand.setMarker(settings.hasMarker);
         stand.setGravity(settings.hasGravity);
