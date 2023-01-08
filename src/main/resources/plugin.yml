@@ -1,0 +1,9 @@
+name: ModelMaker
+version: '${project.version}'
+main: me.will0mane.plugins.modelmaker.ModelMaker
+api-version: 1.17
+authors: [ Will0mane ]
+description: Make awesome models in minecraft!
+commands:
+  loadmodel:
+    description: Loads a model from file
