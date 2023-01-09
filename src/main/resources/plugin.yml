@@ -7,5 +7,3 @@ description: Make awesome models in minecraft!
 commands:
   loadmodel:
     description: Loads a model from file
-  loadpet:
-    description: Loads a pet from file
